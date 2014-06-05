@@ -1,0 +1,7 @@
+fix-sample-data-paths.patch
+set-encryption-off-sample-data.patch
+fix-lessfs-manual.patch
+#fix-hyphens-replogtool-manpage.patch
+#fix-hyphens-lessfs-manpage.patch
+#fix-whatis-replogtool-manpage.patch
+#fix-spelling-lessfs-manpage.patch

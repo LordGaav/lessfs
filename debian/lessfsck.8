@@ -1,0 +1,21 @@
+.TH LESSFSCK "8" "September 2011" "lessfsck" "Maintenance Commands"
+.SH NAME
+lessfsck \- Filesystem check for lessfs
+.SH SYNOPSYS
+.B /usr/sbin/lessfsck [\-o] [\-f] [\-t] \fB\-c\fR /path_to_config.cfg
+.SH DESCRIPTION
+Filesystem check utility for lessfs.
+
+\fB\-o\fR Optimize the tokyocabinet databases.
+This operation requires enough free space to contain a full copy of the database!
+Optimizing the database is advised after a crash but often we can do without.
+
+\fB\-f\fR Start fsck without delay, lessfs is not mounted.
+
+\fB\-t\fR Thorough mode inspects not only the metadata but the file structures as well.
+.PP
+.SH "SEE ALSO"
+.B mklessfs
+(8)
+.SH "NOTES"
+This manpage has been created for Debian GNU/Linux.

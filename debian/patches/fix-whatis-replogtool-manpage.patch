@@ -1,0 +1,13 @@
+Description: Fix whatis entry in replogtool manpage
+Author: Eduardo Trápani <etrapani@gmail.com>
+--- a/replogtool.1
++++ b/replogtool.1
+@@ -5,7 +5,7 @@
+ .\"
+ .TH replogtool 1 .\" "Lessfs reference" v1.5.3 "2011"
+ .SH NAME
+-replogtool is a replication logfile parser for lessfs
++replogtool \- Replication logfile parser for lessfs
+ .SH SYNTAX
+ .nf
+ \fBreplogtool\fR ./replogtool \-r /path_to_replogfile \-b blocksize\\

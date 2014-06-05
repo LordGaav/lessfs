@@ -5,7 +5,12 @@
 override_dh_auto_configure:
 	./configure \
 		--prefix=/usr \
+		--sysconfdir /etc/lessfs \
 		--with-berkeleydb \
 		--with-crypto \
 		--with-lzo \
 		--with-snappy
+
+override_dh_fixperms:
+		dh_fixperms
+		chmod 644 debian/lessfs/usr/share/doc/lessfs/examples/lessfs.cfg

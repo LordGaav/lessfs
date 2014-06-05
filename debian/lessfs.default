@@ -1,0 +1,13 @@
+# Defaults for lessfs initscript
+# sourced by /etc/init.d/lessfs
+# installed at /etc/default/lessfs by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+START_LESSFS=false
+
+# Additional options that are passed to the Daemon.
+MOUNTPOINT=/mnt/lessfs
+CONFIG_FILE=/etc/lessfs/lessfs.cfg
+DAEMON_OPTS="$CONFIG_FILE $MOUNTPOINT"

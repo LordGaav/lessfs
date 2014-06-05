@@ -1,0 +1,147 @@
+Description: Fix hyphens in lessfs manpage
+Author: Eduardo Trápani <etrapani@gmail.com>
+--- a/lessfs.1
++++ b/lessfs.1
+@@ -1,20 +1,20 @@
+ .\"
+-.\" lessfs.1 - the *roff document processor source for the lessfs manual
++.\" lessfs.1 \- the *roff document processor source for the lessfs manual
+ .\" You may contact the author by:
+-.\" e-mail: mruijter@gmail.com
++.\" e\-mail: mruijter@gmail.com
+ .\"
+ .TH lessfs 1 .\" "Lessfs reference" v1.5.3 "2011"
+ .SH NAME
+-lessfs - An inline data deduplicating filesystem
++lessfs \- An inline data deduplicating filesystem
+ .SH SYNTAX
+ .nf
+ \fBlessfs\fR /etc/lessfs.cfg /mountpoint\\
+-[\fB-o\fR big_writes,max_read=nnnn,max_write=nnnn]
++[\fB\-o\fR big_writes,max_read=nnnn,max_write=nnnn]
+ .fi
+ .SH VERSION
+ This man page documents lessfs version 1.5.3
+ .SH DESCRIPTION
+-\fBlessfs\fR is a filesystem that performs inline data deduplication. lessfs uses the 192-bit (24-byte) tiger hash algorithm by default to compare the data. The filesystem compresses the unique data blocks before writing them to disk. 
++\fBlessfs\fR is a filesystem that performs inline data deduplication. lessfs uses the 192\-bit (24\-byte) tiger hash algorithm by default to compare the data. The filesystem compresses the unique data blocks before writing them to disk. 
+ .br
+ Lessfs supports a large number of compression protocols. See COMPRESSION for details.
+ .br 
+@@ -37,20 +37,20 @@
+ lessfs /etc/lessfs.cfg /fuse
+ 
+ This will result in lessfs being mounted with the arguments:
+-\-ohard_remove,negative_timeout,entry_timeout=0,\\
++\\-ohard_remove,negative_timeout,entry_timeout=0,\\
+   attr_timeout=0,use_ino,readdir_ino,default_permissions,allow_other,\\
+   big_writes,kernel_cache,max_read=BLKSIZE,max_write=BLKSIZE
+ 
+ You can override the default settings removing the BLKSIZE line from the
+ configuration file and specify the options on the commandline.
+ To mount lessfs with a \fB4k\fR blocksize.
+-lessfs /etc/lessfs.cfg /fuse  -o negative_timeout=0,\\
++lessfs /etc/lessfs.cfg /fuse  \-o negative_timeout=0,\\
+        entry_timeout=0,attr_timeout=0,use_ino,\\
+        readdir_ino,default_permissions,allow_other,\\
+        max_read=4096,max_write=4096
+ 
+ To mount lessfs with a \fB128k\fR blocksize.
+-lessfs /etc/lessfs.cfg /fuse \-o negative_timeout=0,\\
++lessfs /etc/lessfs.cfg /fuse \\-o negative_timeout=0,\\
+        entry_timeout=0,attr_timeout=0,use_ino,\\
+        readdir_ino, default_permissions,allow_other,\fBbig_writes\fR,\\
+        max_read=131072,max_write=131072
+@@ -86,7 +86,7 @@
+ .nf
+ The bucketsize of the blockdata database. 
+ See the tokyocabinet documentation for details.
+-http://tokyocabinet.sourceforge.net/spex-en.html
++http://tokyocabinet.sourceforge.net/spex\-en.html
+ Example: BLOCKDATA_BS=10485760
+ .fi
+ .IP "BLOCKUSAGE_PATH"
+@@ -104,7 +104,7 @@
+ Example: DIRENT_BS=1048576
+ .fi
+ .IP "FILEBLOCK_PATH"
+-The path to the directory that holds the database that contains the tigerhash of the inode-blocknr combination. The data that belongs to the hash can be found in the BLOCKDATA database.
++The path to the directory that holds the database that contains the tigerhash of the inode\-blocknr combination. The data that belongs to the hash can be found in the BLOCKDATA database.
+ .IP "FILEBLOCK_BS"
+ The bucketsize of the fileblock database. See BLOCKDATA_BS.
+ Example: FILEBLOCK_BS=10485760
+@@ -148,23 +148,23 @@
+ .IP DYNAMIC_DEFRAGMENTATION=on
+ Enable tokyocabinets automatic defragmentation feature. Default = off when not specified.
+ .IP COREDUMPSIZE=25600000
+-Enable generation of coredumps for debugging. Default = off. Only usefull when lessfs is compiled with CFLAGS=-ggdb2
++Enable generation of coredumps for debugging. Default = off. Only usefull when lessfs is compiled with CFLAGS=\-ggdb2
+ .IP SYNC_RELAX=0 
+ Valid options are : 0 (default) , 1 or 2
+ .br
+ \fB0\fR Flush all caches in lessfs for an inode and sync the tokyocabinet databases to disk when fsync is called for an inode.
+ .br 
+-\fB1\fR Do not sync the tokyocabinet databases to the disk when fsync is called on an inode. The inode data will be written directly to the databases. In case of a crash the databases themselves might not be committed to disk. This feature improves some types of I/O and is especially useful with NFS. There is a trade-off between more speed and the chance of possible loss of data. \fBUse with caution.\fR
++\fB1\fR Do not sync the tokyocabinet databases to the disk when fsync is called on an inode. The inode data will be written directly to the databases. In case of a crash the databases themselves might not be committed to disk. This feature improves some types of I/O and is especially useful with NFS. There is a trade\-off between more speed and the chance of possible loss of data. \fBUse with caution.\fR
+ .br
+ \fB2\fR Living on the edge. Do not flush the caches in lessfs and do not sync the tokyocabinet databases to disk. \fBUse with extreme caution.\fR
+ .IP ENCRYPT_DATA=off
+ .br
+-Enable data encryption. Requires lessfs to be configured with --with-crypto
++Enable data encryption. Requires lessfs to be configured with \-\-with\-crypto
+ .br
+ Valid options are : off (default) or on
+ .IP ENCRYPT_META=off
+ .br
+-Enable meta data encryption. Requires lessfs to be configured with --with-crypto and is only valid with ENCRYPT_DATA=on
++Enable meta data encryption. Requires lessfs to be configured with \-\-with\-crypto and is only valid with ENCRYPT_DATA=on
+ .br
+ It is sometime usefull to disable meta data encryption. For example when one stores email messages in qmail/maildir format the name of the messages is not sensitive. To gain performance you might choose to encrypt only the data of the messages. \fBUse with caution.\fR
+ .br
+@@ -189,10 +189,10 @@
+ .IP REPLICATION=masterslave
+ Valid options are : off or masterslave. In the future additional features will be added, like dualmaster.
+ .IP REPLICATION_PARTNER_IP=127.0.0.1
+-The ip adress of the slave. Only needed when this is the master. Specify -1 when we only want a replog file to be generated. This replog file can be used with \fBreplogtool\fR
++The ip adress of the slave. Only needed when this is the master. Specify \-1 when we only want a replog file to be generated. This replog file can be used with \fBreplogtool\fR
+ .IP ROTATE_REPLOG_SIZE=1073741824
+-The size at which the replication logfile will be rotated when the master is configured to only produce a replog file. E.g. REPLICATION_PARTNER_IP=-1
+-The replication logfile will be renamed to name-CTIME. A sequence number is added to the replication logfile and replogtool will exit when the wrong replog file is used.
++The size at which the replication logfile will be rotated when the master is configured to only produce a replog file. E.g. REPLICATION_PARTNER_IP=\-1
++The replication logfile will be renamed to name\-CTIME. A sequence number is added to the replication logfile and replogtool will exit when the wrong replog file is used.
+ .IP REPLICATION_PARTNER_PORT=201
+ The port on which the slave listens.
+ .IP REPLICATION_ROLE=master
+@@ -200,7 +200,7 @@
+ .IP REPLICATION_LISTEN_IP=127.0.0.1
+ The ip adress on which the slave will listen. Only needed when configuring a slave.
+ .IP REPLICATION_WATCHDIR=/some/path
+-This option is only valid for a lessfs slave. When configured the slave will not listen to REPLICATION_LISTEN_IP, instead it will search for replication logfiles in the path specified. The files need to be named replog.dta-SEQUENCENUMBER as they where created by the master. The slave does not wait for incomming files to be complete. So when the files are copied you should copy them to a file with a different name, like .replog.dta-SEQUENCENUMBER and rename the file when the transfer has completed. When the slave has processed the file it will rename it to replog.dta-SEQUENCENUMBER-processed.
++This option is only valid for a lessfs slave. When configured the slave will not listen to REPLICATION_LISTEN_IP, instead it will search for replication logfiles in the path specified. The files need to be named replog.dta\-SEQUENCENUMBER as they where created by the master. The slave does not wait for incomming files to be complete. So when the files are copied you should copy them to a file with a different name, like .replog.dta\-SEQUENCENUMBER and rename the file when the transfer has completed. When the slave has processed the file it will rename it to replog.dta\-SEQUENCENUMBER\-processed.
+ .IP REPLICATION_LISTEN_PORT=201
+ The port on which the slave will listen. 
+ .IP "REPLICATION_ENABLED=off (default) or on"
+@@ -234,7 +234,7 @@
+ .SH GENERAL FILESYSTEM INFO
+ Lessfs locks a file during truncation. As long as the file is locked only read operations will be executed, all write operations are suspended until the truncation process is completed. Files that are write locked will be visible in /.lessfs/locks/ where they will show up as a file with the inodenumber of the locked file as filename.
+ .SH DIAGNOSTICS
+-To debug the filesystem configure lessfs with : ./configure --enable-debug
++To debug the filesystem configure lessfs with : ./configure \-\-enable\-debug
+ .br
+ Change the value of DEBUG to 5 in lessfs.cfg before you run lessfs.
+ .PP
+@@ -242,7 +242,7 @@
+ .BR mruijter@gmail.com .
+ Be sure to include the word ``lessfsbug'' somewhere in the ``Subject:'' field.
+ .SH COPYRIGHT
+-Copyright (C) 2008-2010  Mark Ruijter
++Copyright (C) 2008\-2010  Mark Ruijter
+ .PP
+ You can redistribute lessfs and/or modify it
+ under the terms of either
+@@ -262,4 +262,4 @@
+ Mark Ruijter <mruijter@gmail.com>
+ .br
+ .SH BUGS
+-When BLKSIZE is specified in the configuration file and other options are passed with -o then the options from the configuration file are used without warning.
++When BLKSIZE is specified in the configuration file and other options are passed with \-o then the options from the configuration file are used without warning.

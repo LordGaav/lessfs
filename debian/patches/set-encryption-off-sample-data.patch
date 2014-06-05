@@ -1,0 +1,17 @@
+Description: Set off the encryption in the sample config file
+Author: Eduardo Trápani <etrapani@gmail.com>
+--- a/etc/lessfs.cfg
++++ b/etc/lessfs.cfg
+@@ -57,10 +57,10 @@
+ # and is therefore disabled by default.
+ BACKGROUND_DELETE=on
+ # Requires openssl and lessfs has to be configured with --with-crypto
+-ENCRYPT_DATA=on
++ENCRYPT_DATA=off
+ # ENCRYPT_META on or off, default is off
+ # Requires ENCRYPT_DATA=on and is otherwise ignored.
+-ENCRYPT_META=on
++ENCRYPT_META=off
+ # You don't like fsck?
+ ENABLE_TRANSACTIONS=on
+ # Select a blocksize to fit your needs.

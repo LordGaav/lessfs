@@ -1,0 +1,45 @@
+Description: Fix groff errors in lessfs man page
+Author: Eduardo Trápani <etrapani@gmail.com>
+--- a/lessfs.1
++++ b/lessfs.1
+@@ -37,7 +37,7 @@
+ lessfs /etc/lessfs.cfg /fuse
+ 
+ This will result in lessfs being mounted with the arguments:
+--ohard_remove,negative_timeout,entry_timeout=0,\\
++\-ohard_remove,negative_timeout,entry_timeout=0,\\
+   attr_timeout=0,use_ino,readdir_ino,default_permissions,allow_other,\\
+   big_writes,kernel_cache,max_read=BLKSIZE,max_write=BLKSIZE
+ 
+@@ -50,7 +50,7 @@
+        max_read=4096,max_write=4096
+ 
+ To mount lessfs with a \fB128k\fR blocksize.
+-lessfs /etc/lessfs.cfg /fuse -o negative_timeout=0,\\
++lessfs /etc/lessfs.cfg /fuse \-o negative_timeout=0,\\
+        entry_timeout=0,attr_timeout=0,use_ino,\\
+        readdir_ino, default_permissions,allow_other,\fBbig_writes\fR,\\
+        max_read=131072,max_write=131072
+@@ -133,8 +133,8 @@
+ Specifies the minimum percentage or free space that has to be available. Lessfs suspends all I/O when less then the minumum required space is reached. This value defaults to 10%.
+ .IP MIN_SPACE_CLEAN=25
+ When MIN_SPACE_CLEAN is configured the program specified by CLEAN_PROGRAM will be executed. This program/script can be used to warn the administator or automatically delete old files. Please note that when CLEAN_PROGRAM is used with the file_io backend deleting files from lessfs will not free disk space on the underlying filesystem since file_io only marks deleted blocks as free in the freelist database.
+-.IP CLEAN_PROGRAM=/usr/local/bin/warn_me.sh 
+-.IP HASHLEN = 24
++.IP CLEAN_PROGRAM=/usr/local/bin/warn_me.sh
++.IP HASHLEN=24
+ The lenght of the hash that identifies the blocks of data measured in bytes. Minimum 20, maximum 32.
+ .br
+ The default value is 24 (192 bits).
+@@ -203,9 +203,9 @@
+ This option is only valid for a lessfs slave. When configured the slave will not listen to REPLICATION_LISTEN_IP, instead it will search for replication logfiles in the path specified. The files need to be named replog.dta-SEQUENCENUMBER as they where created by the master. The slave does not wait for incomming files to be complete. So when the files are copied you should copy them to a file with a different name, like .replog.dta-SEQUENCENUMBER and rename the file when the transfer has completed. When the slave has processed the file it will rename it to replog.dta-SEQUENCENUMBER-processed.
+ .IP REPLICATION_LISTEN_PORT=201
+ The port on which the slave will listen. 
+-.IP REPLICATION_ENABLED=off (default) or on
++.IP "REPLICATION_ENABLED=off (default) or on"
+ When enabled all data stored on the master is directly send to the slave. When disabled the master will write data stored in a replog file as well as it's databases. The replog file will be used to transfer the data to the slave when replication becomes enabled.
+-.IP MAX_BACKLOG_SIZE=0 (default)
++.IP "MAX_BACKLOG_SIZE=0 (default)"
+ The replication master uses a backlog file to queue data that has to be sent to the slave. When MAX_BACKLOG_SIZE configured to be greater then zero the master will pause with accepting new writes as soon as the backlog exceeds MAX_BACKLOG_SIZE. As soon as the replication backlog becomes smaller then MAX_BACKLOG_SIZE the master will resume accepting incomming writes.
+ .IP STICKY_ON_LOCKED=off
+ Valid options are : off (default) or on
