@@ -55,6 +55,14 @@ check_start() {
 		echo "$DAEMON not starting."
 		exit 0
 	fi
+	if [ -d /sys/fs/fuse ]; then
+		modprobe fuse
+		if [ $? -ne 0 ]; then
+			echo "Failed to load FUSE kernel module"
+			echo "$DAEMON not starting."
+			exit 0
+		fi
+	fi
 }
 
 running_pid()
