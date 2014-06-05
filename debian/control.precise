@@ -1,0 +1,14 @@
+Package: lessfs
+Architecture: any
+Depends: ${misc:Depends}, 
+ libtokyocabinet9 (>= 1.4.21~), 
+ libmhash2, 
+ libfuse2 (>= 2.8.0~), 
+ libdb5.3, 
+ liblzo2-2, 
+ libsnappy1,
+ openssl (>= 0.9.5~)
+Description: data deduplication for less
+ Lessfs is an userspace (fuse) inline data de-duplicating 
+ filesystem for Linux that includes support for lzo or 
+ QuickLZ compression and encryption.

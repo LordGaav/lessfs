@@ -1,0 +1,6 @@
+lessfs (1.7.0-chaos1) RELEASE; urgency=low
+
+  * Non-maintainer upload.
+  * Uses upstream release 1.7.0 as base
+
+ -- Nick Douma <n.douma@nekoconeko.nl>  Wed, 05 Jun 2014 12:00:00 +0100

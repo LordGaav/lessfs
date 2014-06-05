@@ -1,0 +1,19 @@
+Source: lessfs
+Section: admin
+Priority: extra
+Maintainer: Nick Douma <n.douma@nekoconeko.nl>
+Build-Depends: debhelper (>= 8.0.0), 
+ build-essential, 
+ libtokyocabinet-dev (>= 1.4.21~), 
+ libmhash-dev, 
+ libfuse-dev (>= 2.8.0~), 
+ libdb-dev, 
+ liblzo2-dev, 
+ libsnappy-dev, 
+ libssl-dev (>= 0.9.5),
+ pkg-config
+Standards-Version: 3.9.2
+Homepage: http://sourceforge.net/projects/lessfs/
+Vcs-Git: git@github.com:LordGaav/lessfs.git
+Vcs-Browser: https://github.com/LordGaav/lessfs.git
+

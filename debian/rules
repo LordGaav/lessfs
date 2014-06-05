@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+override_dh_auto_configure:
+	./configure \
+		--prefix=/usr \
+		--with-berkeleydb \
+		--with-crypto \
+		--with-lzo \
+		--with-snappy
