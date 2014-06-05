@@ -21,6 +21,7 @@ upload_to_ppa:
 clean:
 	rm debian/control
 	rm -R src || exit 0
+	rmdir etc || exit 0
 
 pbuild:
 	pbuilder-dist "$(DIST)" "$(CHANGES)"
